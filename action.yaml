@@ -4,12 +4,20 @@ inputs:
   target-git-url:
     description: Target git url
     required: true
+  ssh-private-key:
+    description: SSH private key for git auth
+    required: true
 
 runs:
   using: composite
   steps:
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Add ssh key
+      uses: webfactory/ssh-agent@v0.4.1
+      with:
+        ssh-private-key: ${{ inputs.ssh-private-key }}
 
     - name: Push to target mirror
       shell: bash
