@@ -19,6 +19,11 @@ runs:
       with:
         ssh-private-key: ${{ inputs.ssh-private-key }}
 
+    - name: Add known host keys
+      shell: bash
+      run: |
+        ssh-keyscan git.sr.ht >> ~/.ssh/known_hosts
+
     - name: Push to target mirror
       shell: bash
       run: |
