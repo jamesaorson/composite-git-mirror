@@ -13,6 +13,8 @@ runs:
   steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Add ssh key
       uses: webfactory/ssh-agent@v0.4.1
